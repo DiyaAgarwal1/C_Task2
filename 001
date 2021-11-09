@@ -1,0 +1,26 @@
+//Input a number n and a n digit number and then find the key that is second max. no. subtracted by from the max. no.
+
+#include<iostream>
+using namesoace std;
+int main()
+{
+int n,a,max=0,smax,r,key;
+cout<<"Enter n and n digit number ";
+cin>>n>>a;
+while(a!=0)
+  {
+  r=a%10
+  if(r>max)
+    {
+    max=r;
+    smax=max;
+    }
+   if(r>smax)
+   smax=r;
+   
+   a=a/10
+  }
+  key=max-smax;
+  cout<<"Key is"<<key<<endl;
+return 0;
+}
