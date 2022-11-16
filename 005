@@ -1,0 +1,28 @@
+//Program to find no. og vowels and consonants in a string
+
+#include <bits/stdc++.h>
+  using namespace std;
+  
+  int main()
+  {
+      int countv=0,countc=0,n;
+      string s;
+      cout<<"Enter your string : ";
+      getline(cin,s);
+      n=s.size();
+      for(int i=0;i<n;i++)
+      {
+        char k;
+        k = s[i];
+        //if((k=='A')||(k=='E')||(k=='I')||(k=='O')||(k=='U')) 97,101,105,111,117
+        if ((int(k)==65)||(int(k)==69)||(int(k)==73)||(int(k)==79)||(int(k)==85)||(int(k)==97)||(int(k)==101)||(int(k)==105)||(int(k)==111)||(int(k)==117))
+        countv++;
+        else
+        countc++;
+      }
+      cout<<"Number of vowels : ";
+      cout<<countv<<endl;
+      cout<<"Number of consonants : ";
+      cout<<countc<<endl;
+    return 0;
+  }      
