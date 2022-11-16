@@ -1,0 +1,21 @@
+// convert a number from decimal to binary 
+
+#include <iostream>
+
+using namespace std;
+
+int main()
+{
+    int n,b=1,r,s=0;
+    cout<<"Enter the decimal number";
+    cin>>n;
+    while(n!=0)
+{
+    r=n%2;
+    s=s+r*b;
+    b=b*10;
+    n=n/2;
+}
+    cout<<"binary equivalent is : "<<s;
+    return 0;
+}
