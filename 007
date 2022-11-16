@@ -1,0 +1,30 @@
+// C program to find gross salary of a user
+
+#include<stdio.h>
+struct employee
+{
+int eid;
+char name[20];
+float basic;
+float da;
+float hra;
+float gross;
+};
+int main()
+{
+struct employee e[100];
+
+int i,n;
+printf("input employees count:");
+scanf("%d",&n);
+printf("\nenter eid,name and basic pay:");
+for(i=0;i<=n-1;i++)
+scanf("%d%s%f",&e[i].eid,&e[i].name,&e[i].basic);
+for(i=0;i<=n-1;i++)
+{
+e[i].da=.52*e[i].basic;
+e[i].hra=.2*e[i].basic;
+e[i].gross=e[i].basic+e[i].da+e[i].hra;
+printf("\nthe gross salary of employee with eid[%d] is %f",e[i].eid,e[i].gross);
+}
+}
