@@ -1,0 +1,18 @@
+// C program to find octal equivalent of decimal number
+
+#include<stdio.h>
+void main()
+{
+    int n,r,t,s=0,b=1;
+    printf("Input a decimal number:");
+    scanf("%d",&n);
+    t=n;
+    while(n!=0)
+    {
+        r=n%8;
+        s=s+r*b;
+        b=b*10;
+        n=n/8;
+    }
+    printf("\n%d is the octal eqv.  of given decimal number %d",s,t);
+}
