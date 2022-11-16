@@ -1,0 +1,28 @@
+//program to find sum of digits of a number using recursion
+
+#include <iostream>
+  using namespace std;
+  
+  int  sum(int n)
+  {
+   int d; 
+   if(n<=0)
+    return 0 ;
+   else
+   {
+     d=n%10;
+     n=n/10;
+     return d+sum(n);
+   }
+  
+  }
+  
+  int main()
+  {
+    int n,fsum;
+    cout<<"Enter the number : ";
+    cin>>n;
+    fsum = sum(n);
+    cout<<fsum<<endl;
+    return 0;
+  }
