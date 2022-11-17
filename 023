@@ -1,0 +1,11 @@
+// Assembly language program to find the number of 1’s in a byte stored in R0 and Store the number of 1’s in register R2.
+
+MOV R0,#AAh
+MOV A,R0 
+MOV R2,#00h
+MOV R1,#08h
+LOOP:RLC A 
+JNC CONT
+INC R2
+CONT:DJNZ R1,LOOP
+HERE:SJMP HERE
