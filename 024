@@ -1,0 +1,13 @@
+//Assembly language program to find the number 64h from the set of five readings starting from address location 50H to 54h. If present store 00h in R0,
+//otherwise store FFh in R0.
+//(50) =76h, (51) =45h, (52) =64h, (53) =25h, (54) =22h
+
+MOV R1,#50h
+MOV R2,#05h 
+LOOP:CJNE @R1,#64H,CONT 
+MOV R0,#00h
+HERE1:SJMP HERE1 
+CONT:INC R1 
+DJNZ R2,LOOP
+MOV R0,#FFh
+HERE2:SJMP HERE2
