@@ -1,0 +1,35 @@
+// Verilog Full adder without using half adder
+
+module fulladder(s,co,a,b,ci);
+  input a,b,ci;
+  output s,co;
+  wire x1,x2,x3;
+  xor xa(x1,a,b);
+  xor xb(s,x1,ci);
+  and a1(x2,a,b);
+  and a2(x3,x1,ci);
+  or o1(c0,x2,x3);
+endmodule
+
+//testbench
+
+module test;
+  reg a,b,ci;
+  wire s,co;
+  fulladder uut(s,co,a,b,ci);
+  initial
+    begin
+      $dumpfile("dump.vcd");
+      $dumpvars(1);
+      $monitor($time,"a=%b,b=%b,ci=%b,co=%b,s=%b",a,b,ci,co,s);
+    end
+  initial
+    begin
+      for(int i=0;i<8;i=i+1)
+        begin
+          a=i;b=$random;ci=$random;
+          #5;
+        end
+      #5 $finish;
+    end
+endmodule
