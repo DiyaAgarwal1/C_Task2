@@ -1,0 +1,62 @@
+//Verilog - Full adder using half adder
+
+module ha_ad(o0,o1,i0,i1);
+  input i0 , i1;
+  output o0 , o1;
+  assign o0=i0^i1;
+  assign o1=i0&i1;
+endmodule
+
+module fu_ad(s,caf,a,b,c);
+  input a , b , c;
+  output s , caf;
+  wire h1car,h2car,h1sum,h2sum;
+  
+  ha_ad h1( 
+    .o0(h1sum),
+    .o1(h1car),
+    .i0(a)    ,
+    .i1(b) );
+  
+  ha_ad h2( 
+    .o0(s) ,
+    .o1(h2car),
+    .i0(h1sum),
+    .i1(c) );
+  assign s = h2sum;
+  assign caf = h1car | h2car;
+endmodule
+
+//testbench
+
+module fu_ad_tb();
+  reg a,b,c;
+  wire s,caf;
+  fu_ad uut(s,caf,a,b,c);
+  initial
+    begin
+      #1
+      a=0; 
+      b=0; 
+      c=0;
+      #3
+      a=1; 
+      b=1; 
+      c=1;
+      #6
+      a=0; 
+      b=1; 
+      c=1;
+      #9
+      a=1; 
+      b=0; 
+      c=0;
+    end
+  initial
+    begin
+      $dumpfile("dump.vcd");
+      $dumpvars(1);
+      $monitor("%b,S,Co"); 
+      $monitor($time,"a=%b,b=%b,c=%b,s=%b,co=%b",a,b,c,s,caf);
+    end
+endmodule
