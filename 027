@@ -1,0 +1,12 @@
+// Python code for exception handling in Complex Numbers
+
+x = complex (input("Enter the complex number "))
+try:
+  z = complex (x)
+except ValueError:
+    print("The number entered is invalid")  
+else:
+    print("Complex Number is ",z)
+    print("Absolute value of complex number is ",abs(x))
+finally:
+    print("complex numbers aren't actually complex!")  
