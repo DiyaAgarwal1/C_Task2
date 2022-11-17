@@ -1,0 +1,32 @@
+//Verilog Half Subtractor
+
+module halfsub(d,bo,a,b);
+  input a,b;
+  output d,bo;
+  wire x;
+  xor x1(d,a,b);
+  not n1(x,a);
+  and a1(bo,x,b);
+endmodule
+
+//testbench
+
+module test;
+  reg a,b;
+  wire d,bo;
+  halfsub uut (d,bo,a,b);
+  initial
+    begin
+      $dumpfile("dump.vcd");
+      $dumpvars(1);
+      $monitor($time,"a=%b,b=%b,d=%b,bo=%b",a,b,d,bo);
+    end
+  initial
+    begin
+      a=1'b0;b=1'b0;
+      #5 a=1'b0;b=1'b1;
+      #5 a=1'b1;b=1'b0;
+      #5 a=1'b1;b=1'b1;
+      #5 $finish;
+    end
+endmodule
