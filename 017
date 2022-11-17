@@ -1,0 +1,10 @@
+// Write assembly language program to subtract two numbers - result in R6 and R7
+
+CLR C
+MOV A, #0E7H
+SUBB A,#8DH
+MOV R6,A
+MOV A,#3CH
+SUBB A,#3BH
+MOV R7,A
+HERE:SJMP HERE
