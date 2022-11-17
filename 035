@@ -1,0 +1,36 @@
+//Verilog 2 Bit Counter
+
+module counter(clk,rst,count,op);
+input clk,rst;
+  output reg [1:0]count =2'b00;
+  always @(negedge clk)
+    begin
+      if (rst)
+        count = 2'b00;
+      else
+        count = count + 2'b01;
+    end
+endmodule
+
+//testbench
+
+module counter_tb;
+  reg clk,rst;
+  wire [1:0]count;
+  counter uut ( .clk(clk) , .rst(rst) , .count(count));
+  initial begin
+    $dumpfile("dump.vcd");
+$dumpvars(1);
+end
+  initial
+    begin
+      clk=0;
+      rst=0;
+      #100;
+      rst = 1;
+      #100;
+      rst = 0;
+     end
+always #5 clk=~clk;
+  
+endmodule
