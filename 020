@@ -1,0 +1,9 @@
+// Assembly language program to copy the value 55H into RAM memory locations 40H to 44H 
+
+MOV A,#55h 
+MOV R0,#40h
+MOV R2,#05h 
+AGAIN:MOV @R0,A 
+INC R0
+DJNZ R2,AGAIN
+HERE:SJMP HERE
