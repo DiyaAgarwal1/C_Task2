@@ -1,0 +1,15 @@
+//Assembly language program to add six bytes of data stored in memory locations starting at 50H. Store the sum at memory locations 60H & 61H and any carries
+generated to register R7
+
+MOV R0,#50h 
+MOV R2,#06h 
+CLR A 
+MOV R7,A 
+AGAIN:ADD A,@R0
+JNC NEXT
+INC R7 
+NEXT: INC R0 
+DJNZ R2,AGAIN 
+MOV 60h,A 
+MOV 61h,R7 
+HERE:SJMP HERE
