@@ -1,0 +1,37 @@
+//Verilog - Full Subractor
+
+module fullsub(d,bo,a,b,ci);
+  input a,b,ci;
+  output d,bo;
+  wire s1,s2,s3,s4,s5;
+  xor x1(s1,a,b);
+  xor x2(d,s,ci);
+  not n1(s2,a);
+  not n2(s4,s1);
+  and a1(s3,s2,b);
+  and a2(s5,s4,ci);
+  or o1(b0,s3,s5);
+endmodule
+
+//testbench
+
+module test;
+  reg a,b,ci;
+  wire d,bo;
+  fullsub uut(d,bo,a,b,ci);
+  initial
+    begin
+      $dumpfile("dump.vcd");
+      $dumpvars(1);
+      $monitor($time,"a=%b,b=%b,ci=%b,bo=%b,d=%b",a,b,ci,bo,d);
+    end
+  initial
+    begin
+      for(int i=0;i<8;i=i+1)
+        begin
+          a=i;b=$random;ci=$random;
+          #5;
+        end
+      #5 $finish;
+    end
+endmodule
