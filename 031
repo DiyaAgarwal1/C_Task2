@@ -1,0 +1,49 @@
+//Verilog - 4 bit ripple carry adder 
+
+module fulladder(s,co,a,b,ci);
+  input a,b,ci;
+  output s,co;
+  wire s1,c1,c2;
+  xor x1(s1,a,b);
+  and a1(c1,a,b);
+  xor x2(s,s1,ci);
+  and a2(c2,s1,ci);
+  or o1(c0,c1,c2);
+endmodule
+
+module fulladder4(s,co,a,b,ci);
+  input [3:0]a,b;
+  input ci;
+  output [3:0]s;
+  output co;
+  wire c1,c2,c3;
+  fulladder f1(s[0],c1,a[0],b[0],ci);
+  fulladder f2(s[1],c2,a[1],b[1],c1);
+  fulladder f3(s[2],c3,a[2],b[2],c2);
+  fulladder f4(s[3],co,a[3],b[3],c3);
+endmodule
+
+//test bench
+
+module test;
+  reg [3:0]a,b;
+  reg ci;
+  wire [3:0]s;
+  wire co;
+  fulladder4 uut(s,co,a,b,ci);
+  initial
+    begin
+      $dumpfile("dump.vcd");
+      $dumpvars(1);
+      $monitor($time,"a=%b,b=%b,ci=%b,co=%b,s=%b",a,b,ci,co,s);
+    end
+  initial
+    begin
+      a=4'b0000;b=4'b0000;ci=1'b0;
+      #5 a=4'b0011;b=4'b0100;
+      #5 a=4'b0010;b=4'b0101;
+      #5 a=4'b1001;b=4'b1001;
+      #5 a=4'b1010;b=4'b1111;
+      #5 $finish;
+    end
+endmodule
