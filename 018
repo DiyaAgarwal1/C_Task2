@@ -1,0 +1,14 @@
+// Assembly language program to multiply two numbers saved in mem locations and save the result in mem locations
+
+MOV DPTR,#8051h 
+MOVX A,@DPTR 
+MOV 0F0h,A 
+MOV DPTR,#8050h 
+MOVX A,@DPTR
+MUL AB 
+MOV DPTR,#8060h 
+MOVX @DPTR,A 
+INC DPTR
+MOV A,0F0h
+MOVX @DPTR,A
+HERE:SJMP HERE
